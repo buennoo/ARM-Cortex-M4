@@ -48,7 +48,7 @@ void Melody()
 int main(void)
 {
     float vol = 0.9;
-    uint32_t freq = 50;
+    uint32_t freq = 0;
 
     ROM_SysCtlClockSet (SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_8MHZ);
 
