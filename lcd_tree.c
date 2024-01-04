@@ -1,5 +1,6 @@
     #include <stdint.h>
     #include <stdbool.h>
+    #include <math.h>
     #include "inc/hw_memmap.h"
     #include "driverlib/fpu.h"
     #include "driverlib/sysctl.h"
@@ -82,20 +83,32 @@ SYSCTL_OSC_MAIN);
 
     GrFlush(&sContext);
 
+    uint32_t *colors[] = {16751103, 10079487, 10066431, 16751001, 16777164};
+    unsigned int j = 0, k = 0, l = 0;
     while(1)
     {
-    // Draw RGB rectangles
-    /*
-    sRect.i16XMin = 40;
-    sRect.i16XMax = 140;
-    sRect.i16YMin = 20;
-    sRect.i16YMax = 100;
+    if(j < 0 || j > 4){
+        j = 0;
+    }
+    if(k < 0 || k > 4){
+        k = 0;
+    }
+    if(l < 0 || l > 4){
+        l = 0;
+    }
+    GrContextForegroundSet(&sContext, colors[j]);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 20, (GrContextDpyWidthGet(&sContext) / 2)+5, 6);
 
-    GrContextForegroundSet(&sContext, ClrRed);
-    GrRectFill(&sContext, &sRect);
-    GrFlush(&sContext);
-    */
+    GrContextForegroundSet(&sContext, colors[k+1]);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) + 20, (GrContextDpyWidthGet(&sContext) / 2)-40, 6);
+
+    GrContextForegroundSet(&sContext, colors[l+2]);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 5, (GrContextDpyWidthGet(&sContext) / 2)-120, 6);
+
+    j++;
+    k++;
+    l++;
+
     ROM_SysCtlDelay(ROM_SysCtlClockGet()/2);
-
     }
 }
