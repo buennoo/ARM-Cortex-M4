@@ -84,7 +84,7 @@ SYSCTL_OSC_MAIN);
     GrFlush(&sContext);
 
     uint32_t *colors[] = {16751103, 10079487, 10066431, 16751001, 16777164};
-    unsigned int j = 0, k = 0, l = 0;
+    unsigned int j = 0, k = 1, l = 2;
     while(1)
     {
     if(j < 0 || j > 4){
@@ -97,13 +97,18 @@ SYSCTL_OSC_MAIN);
         l = 0;
     }
     GrContextForegroundSet(&sContext, colors[j]);
-    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 20, (GrContextDpyWidthGet(&sContext) / 2)+5, 6);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 23, (GrContextDpyWidthGet(&sContext) / 2)+5, 6);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) + 24, (GrContextDpyWidthGet(&sContext) / 2)-95, 6);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 22, (GrContextDpyWidthGet(&sContext) / 2)-100, 6);
 
-    GrContextForegroundSet(&sContext, colors[k+1]);
-    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) + 20, (GrContextDpyWidthGet(&sContext) / 2)-40, 6);
+    GrContextForegroundSet(&sContext, colors[k]);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) + 21, (GrContextDpyWidthGet(&sContext) / 2)-40, 6);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 21, (GrContextDpyWidthGet(&sContext) / 2)-42, 6);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 40, (GrContextDpyWidthGet(&sContext) / 2) + 25, 6);
 
-    GrContextForegroundSet(&sContext, colors[l+2]);
+    GrContextForegroundSet(&sContext, colors[l]);
     GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 5, (GrContextDpyWidthGet(&sContext) / 2)-120, 6);
+    GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) + 10, (GrContextDpyWidthGet(&sContext) / 2)+25, 6);
 
     j++;
     k++;
