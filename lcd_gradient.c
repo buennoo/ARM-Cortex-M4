@@ -65,14 +65,6 @@ SYSCTL_OSC_MAIN);
     char *text = "Kwadrat";
     char *font = "g_psFontCm20b";
 
-    sRect.i16XMin = GrContextDpyWidthGet(&sContext) / 4;
-    sRect.i16XMax = (GrContextDpyWidthGet(&sContext) / 4) + 160;
-    sRect.i16YMin = GrContextDpyHeightGet(&sContext) / 4;
-    sRect.i16YMax = (GrContextDpyHeightGet(&sContext) / 4) + 120;
-
-    GrContextForegroundSet(&sContext, color);
-    GrRectFill(&sContext, &sRect);
-
     for(i = 0; i < 160; i++){
         GrContextForegroundSet(&sContext, 16751103 - i);
         GrLineDraw(&sContext, (GrContextDpyWidthGet(&sContext) / 4) + i, (GrContextDpyHeightGet(&sContext) / 4), (GrContextDpyWidthGet(&sContext) / 4) + i, (GrContextDpyHeightGet(&sContext) / 4) + 120);
