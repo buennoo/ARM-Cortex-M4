@@ -65,6 +65,7 @@ SYSCTL_OSC_MAIN);
     // Colors: red, green, blue, yellow
     uint32_t *color[] = { 16711680, 3394611, 255, 16776960};
     char *text[] = { "Pole A", "Pole B", "Pole C", "Pole D"};
+    char *font[] = { "g_psFontCm20b", "g_sFontCmss12", "g_sFontCm14i", "g_sFontCm18i"};
     unsigned int j = 3;
 
     for(i = 0; i < 4; i++){
@@ -77,7 +78,7 @@ SYSCTL_OSC_MAIN);
         GrRectFill(&sContext, &sRect);
 
         GrContextForegroundSet(&sContext, color[j]);
-        GrContextFontSet(&sContext, g_psFontCm20b);
+        GrContextFontSet(&sContext, font[i]);
         GrStringDrawCentered(&sContext, text[i], -1,
         (10 + GrContextDpyWidthGet(&sContext) / 4) + addX,
         (GrContextDpyHeightGet(&sContext) / 4) + addY,
@@ -111,4 +112,3 @@ SYSCTL_OSC_MAIN);
 
     }
 }
-
