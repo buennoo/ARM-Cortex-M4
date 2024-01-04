@@ -65,7 +65,7 @@ SYSCTL_OSC_MAIN);
     // Colors: red, green, blue, yellow
     uint32_t *color[] = { 16711680, 3394611, 255, 16776960};
     char *text[] = { "Pole A", "Pole B", "Pole C", "Pole D"};
-    char *font[] = { "g_psFontCm20b", "g_sFontCmss12", "g_sFontCm14i", "g_sFontCm18i"};
+    char *font[] = { "g_psFontCm20b", "g_sFontCmss12", "g_sFontCm14i", "g_sFontCmtt14"};
     unsigned int j = 3;
 
     for(i = 0; i < 4; i++){
