@@ -63,7 +63,7 @@ SYSCTL_OSC_MAIN);
     // Color white
     uint32_t *color = 16777215;
     char *text = "Kwadrat";
-    char *font = "g_psFontCm20b";
+    tFont *font = g_psFontCm20b;
 
     for(i = 0; i < 160; i++){
         GrContextForegroundSet(&sContext, 16751103 - i);
