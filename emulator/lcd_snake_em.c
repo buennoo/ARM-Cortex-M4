@@ -16,7 +16,7 @@
 
     bool collisionTop(int y){
         int topBorderY = 2;
-        if(y == topBorderY + 6){
+        if(y < topBorderY + 6){
             return true;
         }
         return false;
@@ -24,7 +24,7 @@
 
     bool collisionBottom(int y){
         int bottomBorderY = 238;
-        if(y == bottomBorderY - 6){
+        if(y > bottomBorderY - 6){
             return true;
         }
         return false;
@@ -32,7 +32,7 @@
 
     bool collisionRight(int x){
         int rightBorderX = 318;
-        if(x == rightBorderX - 6){
+        if(x > rightBorderX - 6){
             return true;
         }
         return false;
@@ -40,7 +40,7 @@
 
     bool collisionLeft(int x){
         int leftBorderX = 2;
-        if(x == leftBorderX + 6){
+        if(x < leftBorderX + 6){
             return true;
         }
         return false;
