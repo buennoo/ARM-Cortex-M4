@@ -80,7 +80,6 @@
     int main(void) {
     tContext sContext;
     tRectangle sRect;
-    tRectangle sRect2;
 
     FPULazyStackingEnable();
 
@@ -114,7 +113,6 @@
     //pozycja gracza
     int x = 40;
     int y = 40;
-    bool turn = true;
     GrContextForegroundSet(&sContext, ClrWhite);
     GrCircleFill(&sContext, x, y, 6);
 
@@ -132,8 +130,6 @@
     bool youLose = false;
     int points = 0;
 
-    int moveDir = 0;
-
     GrFlush(&sContext);
 
     while(1){
@@ -141,7 +137,6 @@
         if(GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_0))
         {
             if(!collisionTop(y) && !youLose){
-                turn = false;
                 y--;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
@@ -155,14 +150,12 @@
             else{
                 youLose = true;
             }
-            moveDir = 1;
             GrFlush(&sContext);
         }
         //dol
         else if(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_5))
         {
             if(!collisionBottom(y) && !youLose){
-                turn = false;
                 y++;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
@@ -177,13 +170,11 @@
             else{
                 youLose = true;
             }
-            moveDir = 2;
             GrFlush(&sContext);
         }
         //prawo
         else if(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_4)){
             if(!collisionRight(x) && !youLose){
-                turn = false;
                 x++;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
@@ -198,13 +189,11 @@
             else{
                 youLose = true;
             }
-            moveDir = 3;
             GrFlush(&sContext);
         }
         //lewo
         else if(GPIOPinRead(GPIO_PORTK_BASE,GPIO_PIN_7)){
             if(!collisionLeft(x) && !youLose){
-                turn = false;
                 x--;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
@@ -219,7 +208,6 @@
             else{
                 youLose = true;
             }
-            moveDir = 4;
             GrFlush(&sContext);
         }
 
