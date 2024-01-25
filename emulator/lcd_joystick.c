@@ -14,7 +14,7 @@
 
     bool collisionTop(int y){
         int topBorderY = 2;
-        if(y == topBorderY + 6){
+        if(y < topBorderY + 6){
             return true;
         }
         return false;
@@ -22,7 +22,7 @@
 
     bool collisionBottom(int y){
         int bottomBorderY = 238;
-        if(y == bottomBorderY - 6){
+        if(y > bottomBorderY - 6){
             return true;
         }
         return false;
@@ -30,7 +30,7 @@
 
     bool collisionRight(int x){
         int rightBorderX = 318;
-        if(x == rightBorderX - 6){
+        if(x > rightBorderX - 6){
             return true;
         }
         return false;
@@ -38,7 +38,7 @@
 
     bool collisionLeft(int x){
         int leftBorderX = 2;
-        if(x == leftBorderX + 6){
+        if(x < leftBorderX + 6){
             return true;
         }
         return false;
@@ -84,31 +84,12 @@
     //kolko
     GrContextForegroundSet(&sContext, ClrRed);
     GrCircleFill(&sContext, (GrContextDpyWidthGet(&sContext) / 2) - 23, (GrContextDpyWidthGet(&sContext) / 2)+5, 6);
-
-    //granice
-    int leftBorderX = 2;
-    int rightBorderX = 318;
-    int topBorderY = 2;
-    int bottomBorderY = 238;
-
-    //rysowanie granic
-    GrContextForegroundSet(&sContext, 11731033);
-    GrLineDraw(&sContext, 0, 0, 2, 280);
-
-    GrContextForegroundSet(&sContext, 11731033);
-    GrLineDraw(&sContext, 318, 0, 319, 240);
-
-    GrContextForegroundSet(&sContext, 11731033);
-    GrLineDraw(&sContext, 0, 1, 320, 2);
-
-    GrContextForegroundSet(&sContext, 11731033);
-    GrLineDraw(&sContext, 0, 238, 320, 240);
-
+    
     //tlo
-    sRect.i16XMin = leftBorderX;
-    sRect.i16XMax = rightBorderX;
-    sRect.i16YMin = topBorderY;
-    sRect.i16YMax = bottomBorderY;
+    sRect.i16XMin = 0;
+    sRect.i16XMax = 320;
+    sRect.i16YMin = 0;
+    sRect.i16YMax = 240;
     GrContextForegroundSet(&sContext, 16751052);
     GrRectFill(&sContext, &sRect);
 
