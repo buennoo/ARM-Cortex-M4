@@ -134,7 +134,7 @@
 
     while(1){
         //gora
-        if(GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_0))
+        if(!(GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_0)))
         {
             if(!collisionTop(y) && !youLose){
                 y--;
@@ -153,7 +153,7 @@
             GrFlush(&sContext);
         }
         //dol
-        else if(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_5))
+        else if(!(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_5)))
         {
             if(!collisionBottom(y) && !youLose){
                 y++;
@@ -173,7 +173,7 @@
             GrFlush(&sContext);
         }
         //prawo
-        else if(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_4)){
+        else if(!(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_4))){
             if(!collisionRight(x) && !youLose){
                 x++;
                 GrContextForegroundSet(&sContext, ClrWhite);
@@ -192,7 +192,7 @@
             GrFlush(&sContext);
         }
         //lewo
-        else if(GPIOPinRead(GPIO_PORTK_BASE,GPIO_PIN_7)){
+        else if(!(GPIOPinRead(GPIO_PORTK_BASE,GPIO_PIN_7))){
             if(!collisionLeft(x) && !youLose){
                 x--;
                 GrContextForegroundSet(&sContext, ClrWhite);
