@@ -16,7 +16,7 @@
 
     bool collisionTop(int y){
         int topBorderY = 2;
-        if(y < topBorderY + 6){
+        if(y < topBorderY + 12){
             return true;
         }
         return false;
@@ -24,7 +24,7 @@
 
     bool collisionBottom(int y){
         int bottomBorderY = 238;
-        if(y > bottomBorderY - 6){
+        if(y > bottomBorderY - 12){
             return true;
         }
         return false;
@@ -32,7 +32,7 @@
 
     bool collisionRight(int x){
         int rightBorderX = 318;
-        if(x > rightBorderX - 6){
+        if(x > rightBorderX - 12){
             return true;
         }
         return false;
@@ -40,7 +40,7 @@
 
     bool collisionLeft(int x){
         int leftBorderX = 2;
-        if(x < leftBorderX + 6){
+        if(x < leftBorderX + 12){
             return true;
         }
         return false;
@@ -137,13 +137,17 @@
         if(!(GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_0)))
         {
             if(!collisionTop(y) && !youLose){
-                y--;
+                y -= 10;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
 
-                if(points > 0){
+                if(points > 1){
                     GrContextForegroundSet(&sContext, 12895484);
-                    GrCircleFill(&sContext, x, y+((points*(points+1))/2)+5, 8);
+                    GrCircleFill(&sContext, x, y+((points*(points+1))/2)+8, 8);
+                }
+                else{
+                    GrContextForegroundSet(&sContext, 12895484);
+                    GrCircleFill(&sContext, x, y+((points*(points+1))/2)+5, 12);
                 }
                 move = true;
             }
@@ -156,13 +160,17 @@
         else if(!(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_5)))
         {
             if(!collisionBottom(y) && !youLose){
-                y++;
+                y += 10;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
 
-                if(points > 0){
+                if(points > 1){
                     GrContextForegroundSet(&sContext, 12895484);
-                    GrCircleFill(&sContext, x, y-((points*(points+1))/2)-5, 8);
+                    GrCircleFill(&sContext, x, y-((points*(points+1))/2)-8, 8);
+                }
+                else{
+                    GrContextForegroundSet(&sContext, 12895484);
+                    GrCircleFill(&sContext, x, y-((points*(points+1))/2)-5, 12);
                 }
 
                 move = true;
@@ -175,14 +183,19 @@
         //prawo
         else if(!(GPIOPinRead(GPIO_PORTE_BASE,GPIO_PIN_4))){
             if(!collisionRight(x) && !youLose){
-                x++;
+                x += 10;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
 
-                if(points > 0){
+                if(points > 1){
                     GrContextForegroundSet(&sContext, 12895484);
-                    GrCircleFill(&sContext, x-((points*(points+1))/2)-5, y, 8);
+                    GrCircleFill(&sContext, x-((points*(points+1))/2)-8, y, 8);
                 }
+                else{
+                    GrContextForegroundSet(&sContext, 12895484);
+                    GrCircleFill(&sContext, x-((points*(points+1))/2)-5, y, 12);
+                }
+
 
                 move = true;
             }
@@ -194,13 +207,17 @@
         //lewo
         else if(!(GPIOPinRead(GPIO_PORTK_BASE,GPIO_PIN_7))){
             if(!collisionLeft(x) && !youLose){
-                x--;
+                x -= 10;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
 
-                if(points > 0){
+                if(points > 1){
                     GrContextForegroundSet(&sContext, 12895484);
-                    GrCircleFill(&sContext, x+((points*(points+1))/2)+5, y, 8);
+                    GrCircleFill(&sContext, x+((points*(points+1))/2)+8, y, 8);
+                }
+                else{
+                    GrContextForegroundSet(&sContext, 12895484);
+                    GrCircleFill(&sContext, x+((points*(points+1))/2)+5, y, 12);
                 }
 
                 move = true;
@@ -237,7 +254,7 @@
                 GrCircleFill(&sContext, x, y, 6);
                 if(start){
                     GrContextForegroundSet(&sContext, 12895484);
-                    GrCircleFill(&sContext, x, y, 8);
+                    GrCircleFill(&sContext, x, y, 30);
                     start = false;
                 }
                 move = false;
@@ -257,7 +274,7 @@
             spawn = false;
         }
 
-        if((x == xPos-8 && y > yPos-8 && y < yPos+8) || (x == xPos+8 && y > yPos-8 && y < yPos+8) || (y == yPos-8 && x > xPos-8 && x < xPos+8) || (y == yPos+8 && x > xPos-8 && x < xPos+8)){
+        if((x > xPos-8 && x < xPos+8 && y > yPos-8 && y < yPos+8)){
             GrContextForegroundSet(&sContext, 12895484);
             GrCircleFill(&sContext, xPos, yPos, 6);
             xTail += 1;
@@ -267,7 +284,6 @@
             ROM_SysCtlDelay(ROM_SysCtlClockGet()/(2));
         }
 
-        ROM_SysCtlDelay(ROM_SysCtlClockGet()/(75));
+        ROM_SysCtlDelay(ROM_SysCtlClockGet()/(450));
     }
 }
-

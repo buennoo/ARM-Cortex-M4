@@ -15,7 +15,7 @@
 
     bool collisionTop(int y){
         int topBorderY = 2;
-        if(y < topBorderY + 6){
+        if(y < topBorderY + 12){
             return true;
         }
         return false;
@@ -23,7 +23,7 @@
 
     bool collisionBottom(int y){
         int bottomBorderY = 238;
-        if(y > bottomBorderY - 6){
+        if(y > bottomBorderY - 12){
             return true;
         }
         return false;
@@ -31,7 +31,7 @@
 
     bool collisionRight(int x){
         int rightBorderX = 318;
-        if(x > rightBorderX - 6){
+        if(x > rightBorderX - 12){
             return true;
         }
         return false;
@@ -39,7 +39,7 @@
 
     bool collisionLeft(int x){
         int leftBorderX = 2;
-        if(x < leftBorderX + 6){
+        if(x < leftBorderX + 12){
             return true;
         }
         return false;
@@ -60,7 +60,7 @@
     SysCtlPeripheralEnable (SYSCTL_PERIPH_GPIOE);
     SysCtlPeripheralEnable (SYSCTL_PERIPH_GPIOK);
 
-    GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_7);
+    GPIOPinTypeGPIOInput(GPIO_PORTB_BASE, GPIO_PIN_0);
     GPIOPinTypeGPIOInput(GPIO_PORTE_BASE, GPIO_PIN_4|GPIO_PIN_5);
     GPIOPinTypeGPIOInput(GPIO_PORTK_BASE, GPIO_PIN_7);
 
@@ -88,7 +88,7 @@
         //gora
         if(!(GPIOPinRead(GPIO_PORTB_BASE,GPIO_PIN_0)))
         {
-            if(!collisionBottom(y)){
+            if(!collisionTop(y)){
                 y -= 10;
                 GrContextForegroundSet(&sContext, ClrWhite);
                 GrCircleFill(&sContext, x, y, 6);
@@ -139,4 +139,3 @@
         SysCtlDelay(ROM_SysCtlClockGet()/(75));
     }
 }
-
